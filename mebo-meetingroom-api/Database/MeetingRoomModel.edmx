@@ -1,0 +1,106 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="MeetingRoomModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="MeetingRooms">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="varchar" MaxLength="36" Nullable="false" />
+          <Property Name="RoomName" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="RoomLocation" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="RoomFloor" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Capacity" Type="int" Nullable="false" />
+          <Property Name="DayAvailableMon" Type="bit" Nullable="false" />
+          <Property Name="DayAvailableTue" Type="bit" Nullable="false" />
+          <Property Name="DayAvailableWed" Type="bit" Nullable="false" />
+          <Property Name="DayAvailableThu" Type="bit" Nullable="false" />
+          <Property Name="DayAvailableFri" Type="bit" Nullable="false" />
+          <Property Name="DayAvailableSat" Type="bit" Nullable="false" />
+          <Property Name="DayAvailableSun" Type="bit" Nullable="false" />
+          <Property Name="TimeAvailableStart" Type="int" Nullable="false" />
+          <Property Name="TimeAvailableEnd" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="MeetingRoomModelStoreContainer">
+          <EntitySet Name="MeetingRooms" EntityType="Self.MeetingRooms" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="MeetingRoomModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="MeetingRoom">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="36" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="RoomName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="RoomLocation" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="RoomFloor" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Capacity" Type="Int32" Nullable="false" />
+          <Property Name="DayAvailableMon" Type="Boolean" Nullable="false" />
+          <Property Name="DayAvailableTue" Type="Boolean" Nullable="false" />
+          <Property Name="DayAvailableWed" Type="Boolean" Nullable="false" />
+          <Property Name="DayAvailableThu" Type="Boolean" Nullable="false" />
+          <Property Name="DayAvailableFri" Type="Boolean" Nullable="false" />
+          <Property Name="DayAvailableSat" Type="Boolean" Nullable="false" />
+          <Property Name="DayAvailableSun" Type="Boolean" Nullable="false" />
+          <Property Name="TimeAvailableStart" Type="Int32" Nullable="false" />
+          <Property Name="TimeAvailableEnd" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="MeetingRoomEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="MeetingRooms" EntityType="Self.MeetingRoom" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="MeetingRoomModelStoreContainer" CdmEntityContainer="MeetingRoomEntities">
+          <EntitySetMapping Name="MeetingRooms">
+            <EntityTypeMapping TypeName="MeetingRoomModel.MeetingRoom">
+              <MappingFragment StoreEntitySet="MeetingRooms">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="RoomName" ColumnName="RoomName" />
+                <ScalarProperty Name="RoomLocation" ColumnName="RoomLocation" />
+                <ScalarProperty Name="RoomFloor" ColumnName="RoomFloor" />
+                <ScalarProperty Name="Capacity" ColumnName="Capacity" />
+                <ScalarProperty Name="DayAvailableMon" ColumnName="DayAvailableMon" />
+                <ScalarProperty Name="DayAvailableTue" ColumnName="DayAvailableTue" />
+                <ScalarProperty Name="DayAvailableWed" ColumnName="DayAvailableWed" />
+                <ScalarProperty Name="DayAvailableThu" ColumnName="DayAvailableThu" />
+                <ScalarProperty Name="DayAvailableFri" ColumnName="DayAvailableFri" />
+                <ScalarProperty Name="DayAvailableSat" ColumnName="DayAvailableSat" />
+                <ScalarProperty Name="DayAvailableSun" ColumnName="DayAvailableSun" />
+                <ScalarProperty Name="TimeAvailableStart" ColumnName="TimeAvailableStart" />
+                <ScalarProperty Name="TimeAvailableEnd" ColumnName="TimeAvailableEnd" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
