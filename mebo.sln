@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26430.15
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mebo-calendar-api", "mebo-calendar-api\mebo-calendar-api.csproj", "{5EE88169-25EA-49C2-9885-3ADE222CE8A6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mebo-meetingroom-api", "mebo-meetingroom-api\mebo-meetingroom-api.csproj", "{7DD9176F-882D-4F9D-89AB-9065C40B45B0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5EE88169-25EA-49C2-9885-3ADE222CE8A6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5EE88169-25EA-49C2-9885-3ADE222CE8A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5EE88169-25EA-49C2-9885-3ADE222CE8A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5EE88169-25EA-49C2-9885-3ADE222CE8A6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7DD9176F-882D-4F9D-89AB-9065C40B45B0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7DD9176F-882D-4F9D-89AB-9065C40B45B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7DD9176F-882D-4F9D-89AB-9065C40B45B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7DD9176F-882D-4F9D-89AB-9065C40B45B0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
