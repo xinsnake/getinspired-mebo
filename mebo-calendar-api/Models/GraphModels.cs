@@ -5,12 +5,12 @@ using System.Web;
 
 namespace mebo_calendar_api.Models
 {
-    public class UserResponse
+    public class StaffResponse
     {
-        public IEnumerable<User> value { get; set; }
+        public IEnumerable<Staff> value { get; set; }
     }
 
-    public class User
+    public class Staff
     {
         public string id { get; set; }
         public string displayName { get; set; }

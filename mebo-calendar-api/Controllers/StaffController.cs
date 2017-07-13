@@ -10,15 +10,15 @@ using System.Web.Http;
 
 namespace mebo_calendar_api.Controllers
 {
-    public class UsersController : ApiController
+    public class StaffController : ApiController
     {
         public async Task<IHttpActionResult> GetAsync()
         {
             try
             {
                 var accessToken = await ServiceAuthProvider.GetAccessToken();
-                var users = await GraphService.GetUsers(accessToken);
-                return Ok(users);
+                var staff = await GraphService.GetStaff(accessToken);
+                return Ok(staff);
             }
             catch (Exception e)
             {
