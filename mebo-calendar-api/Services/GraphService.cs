@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using System.Runtime.Serialization.Json;
 using System.Web;
 using System.Text;
+using System.Xml;
 
 namespace mebo_calendar_api.Services
 {
@@ -40,7 +41,7 @@ namespace mebo_calendar_api.Services
             }
         }
 
-        public static async Task<List<MeetingTimeSuggestion>> FindMeetingTimeAsync(string accessToken, MeetingRoom m, IEnumerable<Staff> staff)
+        public static async Task<List<MeetingTimeSuggestion>> FindMeetingTimeAsync(string accessToken, MeetingRoom m, IEnumerable<Staff> staff, int duration)
         {
             string endpoint = $"https://graph.microsoft.com/v1.0/users/{m.Id}/findMeetingTimes";
 
@@ -51,11 +52,7 @@ namespace mebo_calendar_api.Services
                     request.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
                     request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
 
-                    var findMeetingTimeRequest = new FindMeetingTimeRequest();
-                    findMeetingTimeRequest.returnSuggestionReasons = "true";
-
-                    //TODO more things
-
+                    var findMeetingTimeRequest = GetFindMeetingTimeRequest(m, staff, duration);
                     var json = JsonHelper.Serialize(findMeetingTimeRequest);
                     byte[] buf = Encoding.UTF8.GetBytes(json);
                     request.Content = new ByteArrayContent(buf);
@@ -97,6 +94,52 @@ namespace mebo_calendar_api.Services
                     }
                 }
             }
+        }
+
+        private static FindMeetingTimeRequest GetFindMeetingTimeRequest(MeetingRoom m, IEnumerable<Staff> staff, int duration)
+        {
+            var req = new FindMeetingTimeRequest();
+            req.returnSuggestionReasons = "true";
+
+            // attendees
+            var attendees = new List<Attendee>();
+            attendees.Add(new Attendee()
+            {
+                type = "required",
+                emailAddress = new EmailAddress()
+                {
+                    address = m.RoomName + "@xinsnake.onmicrosoft.com"
+                }
+            });
+            foreach (var s in staff)
+            {
+                attendees.Add(new Attendee()
+                {
+                    type = "required",
+                    emailAddress = new EmailAddress()
+                    {
+                        name = s.displayName,
+                        address = s.mail
+                    }
+                });
+            }
+            req.attendees = attendees;
+
+            // time constraint
+            var timeSlots = new List<Timeslot>();
+            timeSlots.Add(DateHelper.GetNextMeetingTimeslot());
+            var tc = new TimeConstraint()
+            {
+                activityDomain = "unrestricted",
+                timeslots = timeSlots
+            };
+            req.timeConstraint = tc;
+
+            // timespan
+            var timeSpan = TimeSpan.FromMinutes(duration);
+            req.meetingDuration = XmlConvert.ToString(timeSpan);
+
+            return req;
         }
     }
 }

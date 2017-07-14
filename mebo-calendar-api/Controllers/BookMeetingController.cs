@@ -32,8 +32,13 @@ namespace mebo_calendar_api.Controllers
 
             foreach (var m in meetingRooms)
             {
-                var meetingSuggestions = await GraphService.FindMeetingTimeAsync(accessToken, m, staff);
+                var meetingSuggestions = await GraphService.FindMeetingTimeAsync(accessToken, m, staff, request.duration);
                 suggestions.AddRange(meetingSuggestions);
+
+                if (suggestions.Count >= 5)
+                {
+                    break;
+                }
             }
 
             return Ok(suggestions);
